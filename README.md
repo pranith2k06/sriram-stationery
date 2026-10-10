@@ -1,5 +1,6 @@
 # Sri Ram Books & Stationery
-A modern, responsive website for **Sri Ram Books & Stationery**, a neighbourhood shop for pens, notebooks, art supplies, toys, balloons, colour xerox, printouts, online services and money transfer.
+A modern, responsive website for **Sri Ram Books & Stationery**
+
 **Live site:** `https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/` *(replace after enabling GitHub Pages)*
 ## Features
 
