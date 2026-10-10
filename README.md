@@ -17,10 +17,10 @@ A modern, responsive website for **Sri Ram Books & Stationery**
 
 ```
 .
-├── index.html        Page content: text, phone numbers, links
+├── index.html    Page content: text, phone numbers, links
 ├── style.css     Colours, fonts and layout
 ├── script.js     Gallery and photo viewer, image list
-├── images/           Shop photos, logo and banner
+├── images/       Shop photos, logo and banner
 └── README.md
 ```
 
