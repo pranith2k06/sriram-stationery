@@ -1,3 +1,34 @@
+/* Always open at the top of the page on reload, and keep the address clean (no #shop, #print...) */
+if('scrollRestoration' in history){history.scrollRestoration='manual'}
+if(location.hash){history.replaceState(null,'',location.pathname+location.search)}
+window.scrollTo(0,0);
+
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href').slice(1);
+    e.preventDefault();
+    const behavior=reduceMotion?'auto':'smooth';
+    if(!id||id==='top'){window.scrollTo({top:0,behavior});return}
+    const target=document.getElementById(id);
+    if(target)target.scrollIntoView({behavior,block:'start'});
+  });
+});
+
+/* light / dark toggle (remembers the visitor's choice) */
+const root=document.documentElement,themeBtn=document.getElementById('themeBtn');
+function applyTheme(t){
+  root.setAttribute('data-theme',t);
+  themeBtn.setAttribute('aria-pressed',String(t==='dark'));
+  themeBtn.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode');
+}
+applyTheme(root.getAttribute('data-theme')==='dark'?'dark':'light');
+themeBtn.addEventListener('click',()=>{
+  const next=root.getAttribute('data-theme')==='dark'?'light':'dark';
+  try{localStorage.setItem('theme',next)}catch(e){}
+  applyTheme(next);
+});
+
 const IMGS = {
  "front": {
   "s": "images/front.jpg",
@@ -106,3 +137,30 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft')show(cur-1);
   if(e.key==='ArrowRight')show(cur+1);
 });
+
+/* liquid glass: refraction switch, pointer-following rim light, sliding nav lens */
+(function(){
+  const chromium=navigator.userAgentData&&navigator.userAgentData.brands.some(b=>/Chromium/.test(b.brand));
+  if(chromium&&!matchMedia('(prefers-reduced-transparency: reduce)').matches)root.classList.add('refract');
+
+  const glass='.top,.tile figcaption,.bar,.theme,.nav,.upi,.svc li,.sign';
+  if(matchMedia('(hover:hover)').matches){
+    document.addEventListener('pointermove',e=>{
+      const t=e.target.closest&&e.target.closest(glass);if(!t)return;
+      const r=t.getBoundingClientRect();
+      t.style.setProperty('--mx',(e.clientX-r.left)+'px');
+      t.style.setProperty('--my',(e.clientY-r.top)+'px');
+    },{passive:true});
+  }
+
+  const nav=document.querySelector('.nav'),links=[...nav.querySelectorAll('a')];
+  const secs=links.map(a=>document.getElementById(a.getAttribute('href').slice(1)));
+  function update(){
+    const y=innerHeight*.4;let cur=null;
+    secs.forEach((s,i)=>{if(!s)return;const r=s.getBoundingClientRect();if(r.top<=y&&r.bottom>y)cur=links[i]});
+    links.forEach(a=>a===cur?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));
+    if(cur){nav.style.setProperty('--lx',cur.offsetLeft+'px');nav.style.setProperty('--lw',cur.offsetWidth+'px');nav.style.setProperty('--lo','1')}
+    else nav.style.setProperty('--lo','0');
+  }
+  addEventListener('scroll',update,{passive:true});addEventListener('resize',update);update();
+})();
