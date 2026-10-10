@@ -26,24 +26,6 @@ A modern, responsive website for **Sri Ram Books & Stationery**, a neighbourhood
 └── README.md
 ```
 
-## Run locally
-
-No installation needed. Download or clone the repo and open `index.html` in a browser.
-
-```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPO-NAME.git
-cd YOUR-REPO-NAME
-# then open index.html
-```
-
-## Deploy with GitHub Pages
-
-1. Push the project to a GitHub repository, with `index.html` at the top level.
-2. Open **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to *Deploy from a branch*.
-4. Select branch **main** and folder **/ (root)**, then click **Save**.
-5. After a minute or two the site is live at the address shown on that page.
-
 ## Customise
 
 | What to change | Where |
