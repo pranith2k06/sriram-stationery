@@ -26,30 +26,9 @@ A modern, responsive website for **Sri Ram Books & Stationery**, a neighbourhood
 └── README.md
 ```
 
-## Customise
-
-| What to change | Where |
-| --- | --- |
-| Phone numbers (80747 97719, 98660 25837) | Search `index.html` for the numbers (both the `tel:` / `wa.me` links and the visible text) |
-| Shop text and descriptions | `index.html` |
-| Main colour | `--brand` and `--brand-dark` at the top of `css/style.css` |
-| Service button colours | `--orange`, `--purple`, and the `.p-pink` / `.p-green` rules in `css/style.css` |
-| Fonts | `--display` and `--body` in `css/style.css`, plus the Google Fonts `<link>` in `index.html` |
-| Photos | Replace a file in `images/` with a new one of the same name |
-| Gallery captions and order | The `GALLERY` list in `js/script.js` |
-| Google Maps location | Search `index.html` for `maps?cid=` |
-
-Tip: keep photos under about 250 KB each (around 1100 px wide) so the site loads quickly on mobile data.
-
 ## Fonts
 
 [Poppins](https://fonts.google.com/specimen/Poppins) for headings and body text, and [Noto Sans Telugu](https://fonts.google.com/noto/specimen/Noto+Sans+Telugu) for the Telugu shop name. Both load from Google Fonts.
-
-## Contact
-
-**Sri Ram Books & Stationery**
-Call / WhatsApp: 80747 97719
-Shop phone: 98660 25837
 
 ## License and credits
 
