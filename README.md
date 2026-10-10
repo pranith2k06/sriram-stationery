@@ -1,7 +1,7 @@
 # Sri Ram Books & Stationery
 A modern, responsive website for **Sri Ram Books & Stationery**
 
-**Live site:** `https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/` *(replace after enabling GitHub Pages)*
+**Live site:** `https://sriramstationery.netlify.app/`
 ## Features
 
 * Responsive layout for phones, tablets and desktops
