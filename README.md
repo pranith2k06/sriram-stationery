@@ -1,7 +1,7 @@
 # Sri Ram Books & Stationery
 A modern, responsive website for **Sri Ram Books & Stationery**
 
-**Live site:** `https://sriramstationery.netlify.app/`
+**Live site:** [https://sriramstationery.netlify.app/](https://sriramstationery.netlify.app/)
 ## Features
 
 * Responsive layout for phones, tablets and desktops
