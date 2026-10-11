@@ -608,3 +608,17 @@ a,button{-webkit-tap-highlight-color:transparent}
   .tile figcaption{padding:12px 16px}
   .tile h3{font-size:1.2rem}
 }
+
+/* =====================================================================
+   LOGO FIX: the logo photo has a cream background, so the rounded chip
+   uses the same cream and clips the image to its shape
+   ===================================================================== */
+.logo-chip{background:#FFFFF6;overflow:hidden;display:grid;place-items:center;border-radius:999px;line-height:0}
+.logo-chip img{display:block;height:38px;width:auto;max-width:none;object-fit:contain;border-radius:999px}
+@media (max-width:640px){
+  .logo-chip{padding:3px 9px}
+  .logo-chip img{height:36px}
+}
+@media (max-width:360px){
+  .logo-chip img{height:32px}
+}
