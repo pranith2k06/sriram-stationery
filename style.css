@@ -1,5 +1,5 @@
 :root{
-  --brand:	#0096FF; --brand-dark:	#0096FF; --brand-text:	#0096FF; --orange:#D9560B; --purple:#7A3FC2; --yellow:#FFD60A; --pink:#D6197A; --green:#118F37; --sky:#12B5E5;
+  --brand:	#0096FF; --brand-dark:	#0096FF; --brand-text:	#0096FF; --orange:#D9560B; --purple:#7A3FC2; --yellow:#FFD60A; --pink:#D6197A; --green:#25C257; --sky:#12B5E5;
   --bg:#F6F8FC; --surface:#FFFFFF; --text:#16243B; --muted:#52627A; --line:#DCE3EE;
   --deep:#10243E; --deep-text:#EAF0FA; --deep-muted:#AEBBD1;
   --display:'Poppins','Noto Sans Telugu','Segoe UI',system-ui,sans-serif;
@@ -533,3 +533,78 @@ footer{margin-block:clamp(6px,1.5vw,18px) clamp(10px,2vw,24px);border-radius:36p
 .visit .btn-line{background:rgba(255,255,255,.18)}
 @media (max-width:640px){.bar .btn-line{background:rgba(255,255,255,.55)}
   :root[data-theme="dark"] .bar .btn-line{background:var(--glass-bg-soft)}}
+/* =====================================================================
+   MOBILE FIX: nothing may be wider than the screen
+   ===================================================================== */
+html{overflow-x:hidden}
+@supports (overflow:clip){html{overflow-x:clip}}
+@media (max-width:900px){
+  /* the colour glow behind the hero photo stays inside the screen */
+  .shot::before{inset:8% 0 -4% 6%}
+}
+
+/* =====================================================================
+   MOBILE FIX 2: readable glass, tighter header, touch behaviour
+   ===================================================================== */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a,button{-webkit-tap-highlight-color:transparent}
+
+/* stronger glass behind text, so page content never shows through the bars */
+:root{--m-glass:linear-gradient(135deg,rgba(255,255,255,.90),rgba(255,255,255,.76));--m-cap:linear-gradient(135deg,rgba(255,255,255,.94),rgba(255,255,255,.82))}
+:root[data-theme="dark"]{--m-glass:linear-gradient(135deg,rgba(30,46,80,.92),rgba(14,24,44,.86));--m-cap:linear-gradient(135deg,rgba(30,46,80,.92),rgba(14,24,44,.86))}
+@media (max-width:900px){
+  .top,.bar{background:var(--m-glass)}
+  .tile figcaption{background:var(--m-cap)}
+  /* no wobble filter on phones: clearer and faster */
+  .refract .top,.refract .bar,.refract .tile figcaption{
+    -webkit-backdrop-filter:blur(18px) saturate(190%) brightness(1.04);
+    backdrop-filter:blur(18px) saturate(190%) brightness(1.04)}
+}
+
+/* visit panel: deeper blue so white text is easy to read */
+.visit{background:
+  radial-gradient(45% 80% at 95% 100%,rgba(122,63,194,.5),transparent 60%),
+  linear-gradient(160deg,#0A7CE0,#0A58BE 65%,#1E3FA6)}
+
+/* photo viewer: use the real visible height on phones */
+@supports (height:100dvh){.lb img{max-height:calc(100dvh - 190px)}}
+
+/* touch screens: no stuck hover effects */
+@media (hover:none){
+  .btn:hover,.pill:hover,.gal button:hover,.theme:hover,.tile:hover figcaption{transform:none}
+  .tile:hover img,.gal button:hover img{transform:none}
+}
+
+@media (max-width:640px){
+  /* header fits the screen: compact logo, name on two lines */
+  .top .wrap{padding-inline:8px}
+  .top-in{min-height:60px;gap:10px}
+  .brand{gap:8px}
+  .logo-chip{padding:3px 8px}
+  .logo-chip img{height:38px}
+  .brand-name{font-size:.98rem;line-height:1.15}
+  .theme{width:44px;height:44px}
+  .upi{border-radius:26px}
+
+  /* photo viewer: arrows at the bottom, photo uses the full width */
+  .lb{padding:calc(env(safe-area-inset-top,0px) + 64px) 12px calc(env(safe-area-inset-bottom,0px) + 96px)}
+  @supports (height:100dvh){.lb img{max-height:calc(100dvh - 260px)}}
+  .lb .pv,.lb .nx{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);transform:none}
+  .lb .pv{left:calc(50% - 60px)}
+  .lb .nx{right:calc(50% - 60px)}
+  .lb .pv:hover,.lb .nx:hover{transform:scale(1.1)}
+}
+
+@media (max-width:360px){
+  .brand-name{font-size:.88rem}
+  .logo-chip img{height:32px}
+  .hero h1{font-size:1.9rem}
+  .lede{font-size:1.05rem}
+  .cta .btn{padding:12px 14px}
+  .pill{font-size:.95rem;min-height:60px;padding:10px 8px}
+  .bar{padding:6px;gap:5px}
+  .bar .btn{font-size:.84rem;gap:4px;padding:12px 4px}
+  .bar .btn svg{width:16px;height:16px}
+  .tile figcaption{padding:12px 16px}
+  .tile h3{font-size:1.2rem}
+}
